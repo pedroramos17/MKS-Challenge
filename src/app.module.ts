@@ -1,6 +1,6 @@
 import type { RedisClientOptions } from 'redis';
 import { redisStore } from 'cache-manager-ioredis-yet';
-import { CacheModule } from '@nestjs/cache-manager';
+import { CacheInterceptor, CacheModule } from '@nestjs/cache-manager';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -9,6 +9,7 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { User } from './users/entities/user.entity';
 import { Movie } from './movies/entities/movie.entity';
+import { APP_INTERCEPTOR } from '@nestjs/core';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { Movie } from './movies/entities/movie.entity';
     CacheModule.registerAsync<RedisClientOptions>({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
+        isGlobal: true,
         store: redisStore,
         host: configService.get('REDIS_HOST'),
         port: parseInt(configService.get('REDIS_PORT')),
@@ -41,6 +43,12 @@ import { Movie } from './movies/entities/movie.entity';
     MoviesModule,
     AuthModule,
     UsersModule,
+  ],
+  providers: [
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: CacheInterceptor,
+    },
   ],
 })
 export class AppModule {}
