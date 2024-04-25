@@ -1,24 +1,38 @@
-import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
+import { Test } from '@nestjs/testing';
+import { AppModule } from '../src/app.module';
 import * as request from 'supertest';
-import { AppModule } from './../src/app.module';
 
-describe('AppController (e2e)', () => {
+describe('E2E JWT Sample', () => {
   let app: INestApplication;
 
-  beforeEach(async () => {
-    const moduleFixture: TestingModule = await Test.createTestingModule({
+  beforeAll(async () => {
+    const modRef = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();
 
-    app = moduleFixture.createNestApplication();
+    app = modRef.createNestApplication();
     await app.init();
   });
 
-  it('/ (GET)', () => {
+  it('should get a JWT then successfully make a call', async () => {
+    const loginReq = await request(app.getHttpServer())
+      .post('/auth/login')
+      .send({ username: 'john', password: 'changeme' })
+      .expect(200);
+
+    const token = loginReq.body.access_token;
     return request(app.getHttpServer())
-      .get('/')
+      .get('/auth/profile')
+      .set('Authorization', 'Bearer ' + token)
       .expect(200)
-      .expect('Hello World!');
+      .expect(({ body }) => {
+        expect(body.sub).toEqual(1);
+        expect(body.username).toEqual('john');
+      });
+  });
+
+  afterAll(async () => {
+    await app.close();
   });
 });

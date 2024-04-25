@@ -89,13 +89,15 @@ RUN npm install -g pnpm
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
-COPY . /app
+COPY ./package.json /app
 
 USER node
 
 # Dependencies
 FROM base AS deps
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install
+
+COPY . /app
 
 EXPOSE 3000
 
