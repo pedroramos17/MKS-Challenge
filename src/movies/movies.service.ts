@@ -9,7 +9,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 export class MoviesService {
   constructor(
     @InjectRepository(Movie)
-    private moviesRepository: Repository<Movie>,
+    private readonly moviesRepository: Repository<Movie>,
   ) {}
   async create(createMovieDto: CreateMovieDto): Promise<Movie> {
     const movie = this.moviesRepository.create(createMovieDto);
@@ -28,7 +28,7 @@ export class MoviesService {
     const movie = await this.moviesRepository.findOneBy({ id });
 
     if (!movie) {
-      throw new Error('Movie not found');
+      return false;
     }
 
     await this.moviesRepository.update(id, updateMovieDto);
@@ -39,7 +39,7 @@ export class MoviesService {
     const movie = await this.moviesRepository.findOneBy({ id });
 
     if (!movie) {
-      throw new Error('Movie not found');
+      return false;
     }
 
     await this.moviesRepository.delete(id);

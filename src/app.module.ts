@@ -26,7 +26,7 @@ import { Movie } from './movies/entities/movie.entity';
         entities: [User, Movie],
         migrations: [__dirname + './database/migrations/*{.ts,.js}'],
         // do NOT use synchronize: true in production
-        synchronize: !configService.get('IS_PROD'),
+        synchronize: true,
       }),
     }),
     CacheModule.registerAsync<RedisClientOptions>({

@@ -9,7 +9,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 export class UsersService {
   constructor(
     @InjectRepository(User)
-    private usersRepository: Repository<User>,
+    private readonly usersRepository: Repository<User>,
   ) {}
 
   async create(createUserDto: CreateUserDto): Promise<User> {
@@ -23,6 +23,14 @@ export class UsersService {
 
   async findOne(id: string): Promise<User | null> {
     return await this.usersRepository.findOneBy({ id });
+  }
+
+  async findOneByEmail(email: string): Promise<User | null> {
+    return await this.usersRepository.findOneBy({ email });
+  }
+
+  async findOneByUsername(username: string): Promise<User | null> {
+    return await this.usersRepository.findOneBy({ username });
   }
 
   async update(id: string, updateUserDto: UpdateUserDto): Promise<boolean> {

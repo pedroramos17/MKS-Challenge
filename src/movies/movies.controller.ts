@@ -14,7 +14,7 @@ import { UpdateMovieDto } from './dto/update-movie.dto';
 
 @Controller('movies')
 export class MoviesController {
-  constructor(private moviesService: MoviesService) {}
+  constructor(private readonly moviesService: MoviesService) {}
 
   @Post()
   create(@Body() createMovieDto: CreateMovieDto) {

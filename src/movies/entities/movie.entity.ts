@@ -24,7 +24,7 @@ export class Movie {
   runningTime: number;
 
   @Column('simple-array')
-  genre: string[];
+  genres: string[];
 
   @Column('simple-array')
   languages: string[];

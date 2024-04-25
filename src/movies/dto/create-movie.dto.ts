@@ -44,7 +44,7 @@ export class CreateMovieDto {
   @ArrayNotEmpty()
   @IsArray()
   @Length(2, 20, { each: true })
-  genre?: string[];
+  genres: string[];
 
   @ApiProperty()
   @ArrayNotEmpty()
