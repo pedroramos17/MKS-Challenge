@@ -37,18 +37,6 @@ services:
       - ./src:/app/src
     command: npm run start:dev
 
-  pgadmin:
-    image: dpage/pgadmin4
-    restart: always
-    container_name: nest-pgadmin4
-    environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
-    ports:
-      - '5050:80'
-    depends_on:
-      - postgres
-
 volumes:
   postgresdata:
     driver: local
