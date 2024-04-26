@@ -36,6 +36,7 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
         isGlobal: true,
         store: redisStore,
         host: configService.get('REDIS_HOST'),
+        password: configService.get('REDIS_PASSWORD'),
         port: parseInt(configService.get('REDIS_PORT')),
       }),
       inject: [ConfigService],
