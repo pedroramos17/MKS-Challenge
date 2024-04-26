@@ -2,45 +2,39 @@
 
 ## Description
 
-A movie catalog restful API with docker, swagger, postgres and redis.
+A movie catalog restful API with docker, swagger, postgres and redis(cache).
 
-- [ ] CRUD
-- [ ] Auth
-- [ ] Test
-- [ ] Deploy
+## About This Project
 
-## Installation
+I'll describe below the experience in tech stack used on it.
 
-```bash
-$ pnpm install
+- Node (more than two years)
+- Typescript (more than two years)
+- NestJS (less than one year)
+- Redis (less than one year)
+- Swagger (less than one year)
+- Postgres (less than one year)
+- Docker (more than one year)
+
+### Check list
+
+- [x] CRUD
+- [x] Auth
+- [x] Test
+- [x] Deploy
+
+### To-do
+
+- [ ] Integration tests
+- [ ] e2e tests
+- [ ] Authorization roles
+- [ ] SSO (google,...)
+- [ ] Admin backoffice
+
+## Getting Started
+
+Initialize dev container
+
 ```
-
-## Running the app
-
-```bash
-# development
-$ pnpm run start
-
-# watch mode
-$ pnpm run start:dev
-
-# production mode
-$ pnpm run start:prod
+docker compose up
 ```
-
-## Test
-
-```bash
-# unit tests
-$ pnpm run test
-
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
-```
-
-## License
-
-It is [MIT licensed](LICENSE).
