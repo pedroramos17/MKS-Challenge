@@ -35,7 +35,7 @@ services:
       - redis
     volumes:
       - ./src:/app/src
-    command: npm run start:prod
+    command: npm run start:dev
 
 volumes:
   postgresdata:
