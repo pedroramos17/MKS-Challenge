@@ -2,11 +2,11 @@
 
 ## Description
 
-A movie catalog restful API with docker, swagger, postgres and redis(cache).
+A movie catalog restful API with Docker, Swagger, Postgres, and Redis (cache).
 
 ## About This Project
 
-I'll describe below the experience in tech stack used on it.
+I'll describe below the experience in the tech stack used on it.
 
 - Node (more than two years)
 - Typescript (more than two years)
@@ -16,7 +16,7 @@ I'll describe below the experience in tech stack used on it.
 - Postgres (less than one year)
 - Docker (more than one year)
 
-### Check list
+### Checklist
 
 - [x] CRUD
 - [x] Auth
@@ -29,7 +29,7 @@ I'll describe below the experience in tech stack used on it.
 - [ ] e2e tests
 - [ ] Authorization roles
 - [ ] SSO (google,...)
-- [ ] Admin backoffice
+- [ ] Admin back office
 
 ## Getting Started
 
