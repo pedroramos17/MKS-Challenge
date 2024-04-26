@@ -27,7 +27,7 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
         entities: [User, Movie],
         migrations: [__dirname + './database/migrations/*{.ts,.js}'],
         // do NOT use synchronize: true in production
-        synchronize: false,
+        synchronize: true,
       }),
     }),
     CacheModule.registerAsync<RedisClientOptions>({
