@@ -37,7 +37,12 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
       useFactory: async (configService: ConfigService) => ({
         isGlobal: true,
         store: redisStore,
-        url: configService.get('REDIS_URL'),
+        host: configService.get('REDIS_HOST'),
+        port: configService.get('REDIS_PORT'),
+        password: configService.get('REDIS_PASSWORD'),
+        tls: {
+          host: configService.get('REDIS_HOST'),
+        },
       }),
       inject: [ConfigService],
     }),
